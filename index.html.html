@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Клиника «Слово» — Синонимы (5 класс)</title>
+<style>
+:root{
+  --ink:#123c3c; --teal:#0e6b63; --teal2:#0a514b; --mint:#eaf6f3;
+  --line:#d3e6e1; --coral:#e0674c; --gold:#e2a54e;
+  --green:#2f9e6b; --red:#cf4b4b; --muted:#5b7a77;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  background:linear-gradient(180deg,#eef7f5,#e1efeb);
+  color:var(--ink); line-height:1.55; padding-bottom:86px;
+}
+.topbar{
+  display:flex; align-items:center; justify-content:space-between; gap:14px;
+  padding:12px 22px; background:#fff; border-bottom:1px solid var(--line);
+  position:relative; z-index:20;
+}
+.brand{display:flex; align-items:center; gap:12px}
+.logo{
+  width:42px;height:42px;border-radius:12px;background:var(--teal);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;
+  box-shadow:0 4px 12px rgba(14,107,99,.25);
+}
+.brand-title{font-weight:700;font-size:18px;letter-spacing:.2px}
+.brand-sub{font-size:12.5px;color:var(--muted)}
+.patient{
+  font-size:14px;background:#fdf1ec;border:1px solid #f3cdc0;color:#a8432b;
+  padding:7px 14px;border-radius:999px;white-space:nowrap;
+}
+.patient b{letter-spacing:.5px}
+.stepnav{
+  position:sticky; top:0; z-index:15;
+  display:flex; gap:6px; overflow-x:auto; padding:10px 18px;
+  background:rgba(255,255,255,.96); backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+}
+.stepnav button{
+  flex:0 0 auto; border:1.5px solid var(--line); background:#fff; color:var(--muted);
+  font:inherit; font-size:13px; padding:6px 12px; border-radius:999px; cursor:pointer;
+  transition:.15s; white-space:nowrap;
+}
+.stepnav button:hover{border-color:var(--teal); color:var(--teal)}
+.stepnav button.active{background:var(--teal); border-color:var(--teal); color:#fff; font-weight:600}
+main{max-width:980px; margin:0 auto; padding:22px 16px 30px}
+.step{display:none}
+.step.active{display:block; animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+h2{display:flex; align-items:center; gap:12px; font-size:24px; margin:6px 0 14px}
+h2 .num{
+  width:36px;height:36px;flex:0 0 36px;border-radius:50%;background:var(--teal);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:17px;
+}
+h3{font-size:17px; margin:22px 0 10px; color:var(--teal2)}
+p{margin:8px 0}
+.lead{font-size:16.5px}
+.hl{background:#ffe9a8; padding:1px 7px; border-radius:6px; letter-spacing:.5px}
+.card{
+  background:#fff; border:1px solid var(--line); border-radius:16px;
+  padding:16px 18px; margin:12px 0;
+  box-shadow:0 6px 20px rgba(14,107,99,.06);
+}
+.q{font-weight:600; margin:2px 0 10px}
+.medcard{
+  border:2px dashed #b9d8d1; border-radius:16px; background:#fbfefd; padding:16px 18px; margin:14px 0;
+}
+.medcard-head{display:flex; align-items:center; gap:12px; padding-bottom:10px; border-bottom:1px solid var(--line); margin-bottom:10px}
+.medcard-head .cross{
+  width:38px;height:38px;border-radius:10px;background:#fdeceb;color:#c8453b;
+  display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;
+}
+.medcard-title{font-weight:700; letter-spacing:.4px}
+.medcard-name{font-size:14px; color:var(--muted)}
+.medcard ul{margin:6px 0 0 20px; padding:0}
+.medcard li{margin:4px 0}
+.analyses{display:grid; gap:10px}
+.analysis{
+  background:#fff; border:1px solid var(--line); border-left:6px solid var(--teal);
+  border-radius:12px; padding:12px 16px; font-size:18px; letter-spacing:.2px;
+}
+.tag{
+  display:inline-block; font-size:12px; font-weight:700; color:var(--teal);
+  background:var(--mint); border-radius:999px; padding:2px 10px; margin-right:10px;
+  vertical-align:2px; letter-spacing:.3px;
+}
+.opt{
+  display:block; width:100%; text-align:left; margin:7px 0; padding:11px 15px;
+  border:1.5px solid var(--line); background:#fff; border-radius:12px;
+  font:inherit; color:var(--ink); cursor:pointer; transition:.15s;
+}
+.opt:hover:not(:disabled){border-color:var(--teal); background:#f6fcfb; transform:translateY(-1px)}
+.opt.correct{border-color:var(--green); background:#eefaf3; color:#1e7a50; font-weight:600}
+.opt.wrong{border-color:var(--red); background:#fdf1f1; color:#a83232}
+.opt:disabled{cursor:default}
+.fb{display:none; margin-top:10px; padding:10px 14px; border-radius:12px;
+  background:#f0faf7; border-left:4px solid var(--teal); font-size:15px}
+.fb.show{display:block}
+.fb.good{border-color:var(--green); background:#eefaf3}
+.fb.bad{border-color:var(--red); background:#fdf1f1}
+.btn{
+  border:none; background:var(--teal); color:#fff; font:inherit; font-weight:600;
+  padding:10px 20px; border-radius:999px; cursor:pointer; margin:10px 8px 0 0;
+  box-shadow:0 4px 12px rgba(14,107,99,.22); transition:.15s;
+}
+.btn:hover{background:var(--teal2); transform:translateY(-1px)}
+.btn.ghost{background:#fff; color:var(--teal); border:1.5px solid var(--teal); box-shadow:none}
+.btn.ghost:hover{background:var(--mint)}
+.spr-row{font-size:17px; margin:6px 0}
+.spr-row b{color:var(--teal)}
+.combine{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin:10px 0}
+.part{
+  font-size:22px; font-weight:700; color:var(--teal2); background:var(--mint);
+  border:1.5px solid #bfe0d8; border-radius:12px; padding:6px 16px;
+}
+.plus{font-size:22px; color:var(--muted)}
+.result{
+  font-size:22px; font-weight:800; letter-spacing:2px; padding:6px 18px;
+  border-radius:12px; border:2px dashed #cfe0db; color:transparent; background:#fafdfc;
+  transition:.35s;
+}
+.result.show{border:2px solid var(--teal); background:#ffe9a8; color:var(--teal2); transform:scale(1.04)}
+.defp{font-size:17px; line-height:2.1}
+.sel{
+  font:inherit; font-weight:600; color:var(--teal2); background:#fff;
+  border:1.5px dashed var(--teal); border-radius:10px; padding:5px 8px; cursor:pointer;
+  margin:0 3px;
+}
+.sel.good{border:1.5px solid var(--green); background:#eefaf3}
+.sel.bad{border:1.5px solid var(--red); background:#fdf1f1}
+.diagnos{border:2px solid var(--green); background:#f7fdfa}
+.stamp{
+  display:inline-block; font-size:12.5px; font-weight:800; letter-spacing:1.2px;
+  color:#1e7a50; background:#dff5ea; border-radius:8px; padding:4px 12px; margin-bottom:8px;
+}
+.ex{color:var(--teal2); font-weight:600}
+.note{font-size:14px; color:var(--muted)}
+.story{font-size:19px; line-height:2.2; letter-spacing:.2px}
+.w{
+  cursor:pointer; padding:2px 7px; border-radius:8px; transition:.12s;
+  border-bottom:2px dashed #b9d8d1; user-select:none;
+}
+.w:hover{background:#eaf6f3}
+.w.selected{background:#d9efe9; border-bottom:2px solid var(--teal)}
+.w.ok{background:#e7f7ef; border-bottom:2px solid var(--green); color:#1e7a50; font-weight:600}
+.w.bad{background:#fdeaea; border-bottom:2px solid var(--red); color:#a83232}
+.w.miss{border-bottom:2px solid var(--gold); background:#fdf6e7}
+.row3{margin-top:10px; font-size:17px; font-weight:600; color:var(--teal2)}
+.pool{
+  display:flex; flex-wrap:wrap; gap:8px; min-height:56px; padding:12px;
+  background:#fbfefd; border:2px dashed #cfe0db; border-radius:14px;
+}
+.chip{
+  border:1.5px solid var(--line); background:#fff; font:inherit; font-size:16px;
+  padding:7px 15px; border-radius:999px; cursor:pointer; transition:.13s;
+}
+.chip:hover{border-color:var(--teal); transform:translateY(-1px)}
+.chip.picked{background:var(--teal); border-color:var(--teal); color:#fff}
+.chip.ok{background:#e7f7ef; border-color:var(--green); color:#1e7a50}
+.chip.bad{background:#fdeaea; border-color:var(--red); color:#a83232}
+.chip.picked6{background:var(--teal); border-color:var(--teal); color:#fff}
+.cols{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:12px}
+.col{
+  background:#fff; border:1.5px solid var(--line); border-radius:14px; padding:10px;
+  min-height:130px; cursor:pointer; transition:.15s;
+}
+.col:hover{border-color:var(--teal); background:#fbfefd}
+.col-h{font-size:13px; font-weight:700; color:var(--teal); letter-spacing:.4px; margin-bottom:8px; text-align:center}
+.drop{display:flex; flex-wrap:wrap; gap:7px}
+.grid5{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+.card5{display:flex; flex-direction:column; gap:10px; margin:0}
+.words5{font-size:18px; font-weight:600; letter-spacing:.2px}
+.btns{display:flex; gap:8px; flex-wrap:wrap}
+.btns button{
+  border:1.5px solid var(--line); background:#fff; font:inherit; font-size:14.5px;
+  padding:7px 14px; border-radius:999px; cursor:pointer; transition:.13s;
+}
+.btns button:hover:not(:disabled){border-color:var(--teal); color:var(--teal)}
+.btns button.correct{background:#e7f7ef; border-color:var(--green); color:#1e7a50; font-weight:600}
+.btns button.wrong{background:#fdeaea; border-color:var(--red); color:#a83232}
+.score{font-weight:700; color:var(--teal2); margin-top:12px}
+.heal{font-size:18.5px; line-height:2.3}
+.blank{
+  display:inline-block; min-width:92px; text-align:center; font-weight:700;
+  color:var(--teal2); border-bottom:2.5px dashed var(--teal); padding:0 8px;
+}
+.blank.filled{border-bottom:2.5px solid var(--green); color:#1e7a50}
+.row6{display:flex; flex-wrap:wrap; align-items:center; gap:10px; padding:9px 0; border-bottom:1px dashed var(--line)}
+.row6-label{width:34px; font-weight:700; color:var(--muted)}
+.row6-chips{display:flex; flex-wrap:wrap; gap:8px}
+.row6 .fb{flex-basis:100%; margin:4px 0 0}
+.health{margin-top:16px}
+.health-label{font-size:14px; color:var(--muted); margin-bottom:6px}
+.health-bar{height:14px; background:#e6f0ed; border-radius:999px; overflow:hidden}
+#healthFill{height:100%; width:0; background:var(--green); border-radius:999px; transition:.35s}
+.sick{font-size:18px; line-height:2.2}
+.bad7{
+  border:none; background:#ffe9e2; color:#b4442c; font:inherit; padding:2px 8px;
+  border-radius:8px; cursor:pointer; text-decoration:underline wavy #e0674c; text-underline-offset:3px;
+  transition:.13s;
+}
+.bad7:hover{background:#ffd9cd}
+.bad7.done{background:#e7f7ef; color:#1e7a50; text-decoration:none; cursor:default}
+.panel7{display:none}
+.panel7.open{
+  display:block; background:#fff; border:1.5px solid var(--teal); border-radius:14px;
+  padding:14px 16px; margin-top:12px;
+}
+.panel-title{font-weight:600; margin-bottom:10px}
+.chips{display:flex; flex-wrap:wrap; gap:8px}
+.check{display:block; margin:7px 0; padding:8px 12px; border-radius:10px; cursor:pointer; border:1.5px solid var(--line)}
+.check input{margin-right:8px; transform:scale(1.15)}
+.check.ok{border-color:var(--green); background:#eefaf3}
+.check.bad{border-color:var(--red); background:#fdf1f1}
+textarea{
+  width:100%; font:inherit; color:var(--ink); padding:10px 12px; border-radius:12px;
+  border:1.5px solid var(--line); resize:vertical; background:#fff;
+}
+textarea:focus{outline:none; border-color:var(--teal)}
+.selftable{width:100%; border-collapse:collapse; margin-top:10px; font-size:15px}
+.selftable th,.selftable td{border-bottom:1px solid var(--line); padding:8px 10px; text-align:left}
+.selftable th{font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px}
+.selfassess{
+  display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:20px 0 4px;
+  padding-top:14px; border-top:1px dashed #cfe0db; font-size:14px; color:var(--muted);
+}
+.selfassess button{
+  border:1.5px solid var(--line); background:#fff; font:inherit; font-size:14px;
+  padding:6px 12px; border-radius:999px; cursor:pointer; transition:.13s;
+}
+.selfassess button:hover{border-color:var(--teal)}
+.selfassess button.active{background:var(--teal); border-color:var(--teal); color:#fff; font-weight:600}
+.footnav{
+  position:fixed; left:0; right:0; bottom:0; z-index:30;
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:12px 20px; background:rgba(255,255,255,.97); border-top:1px solid var(--line);
+  backdrop-filter:blur(6px);
+}
+.footnav button{
+  border:none; background:var(--teal); color:#fff; font:inherit; font-weight:600;
+  padding:10px 22px; border-radius:999px; cursor:pointer; transition:.15s;
+}
+.footnav button:hover:not(:disabled){background:var(--teal2)}
+.footnav button:disabled{background:#d7e5e1; color:#8aa8a3; cursor:default}
+#counter{font-size:14px; color:var(--muted)}
+@media (max-width:720px){
+  .cols{grid-template-columns:1fr}
+  .grid5{grid-template-columns:1fr}
+  .patient{display:none}
+  h2{font-size:20px}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">+</div>
+    <div>
+      <div class="brand-title">Клиника «Слово»</div>
+      <div class="brand-sub">урок-диагностика · 5 класс</div>
+    </div>
+  </div>
+  <div class="patient">Пациент: <b>СИНОНИМ</b></div>
+</header>
+
+<nav class="stepnav">
+  <button data-n="1" class="active">1 · Анализы</button>
+  <button data-n="2">2 · Диагноз</button>
+  <button data-n="3">3 · История болезни</button>
+  <button data-n="4">4 · Парная диагностика</button>
+  <button data-n="5">5 · Проверка на синонимы</button>
+  <button data-n="6">6 · Лечение</button>
+  <button data-n="7">7 · Консилиум</button>
+  <button data-n="8">8 · Итог</button>
+</nav>
+
+<main>
+
+<!-- ================= ШАГ 1 ================= -->
+<section class="step active" id="s1">
+  <h2><span class="num">1</span> Пациент поступил</h2>
+  <p class="lead">В клинику «Слово» поступил необычный пациент. На его карте написано: <b class="hl">СИНОНИМ</b>. Никто из врачей раньше не встречал такого диагноза. Известны только симптомы.</p>
+
+  <div class="medcard">
+    <div class="medcard-head">
+      <div class="cross">+</div>
+      <div>
+        <div class="medcard-title">МЕДИЦИНСКАЯ КАРТА</div>
+        <div class="medcard-name">Пациент: <b>СИНОНИМ</b> · статус: диагноз не поставлен</div>
+      </div>
+    </div>
+    <div><b>Симптомы:</b></div>
+    <ul>
+      <li>у одного смысла появляется несколько имён;</li>
+      <li>имена похожи, но не одинаковы;</li>
+      <li>если заменить одно имя другим, текст может «заболеть» — потерять точность или звучать фальшиво.</li>
+    </ul>
+  </div>
+
+  <h3>Анализы пациента</h3>
+  <div class="analyses">
+    <div class="analysis"><span class="tag">Анализ 1</span> смелый — храбрый — отважный</div>
+    <div class="analysis"><span class="tag">Анализ 2</span> идти — шагать — плестись</div>
+    <div class="analysis"><span class="tag">Анализ 3</span> большой — огромный — громадный</div>
+  </div>
+
+  <div class="quiz card">
+    <p class="q">Что общего у слов в каждой строке?</p>
+    <button class="opt" data-ok="1" data-fb="Верно! У одного смысла несколько имён — это и есть главный симптом нашего пациента.">Обозначают одно и то же, но называют его по-разному</button>
+    <button class="opt" data-ok="0" data-fb="Присмотрись: смелый и храбрый — явно об одном качестве, а не о разных вещах.">Это совершенно разные, не связанные слова</button>
+    <button class="opt" data-ok="0" data-fb="Противоположные по смыслу — это антонимы: смелый — трусливый. А здесь слова близкие.">Это слова с противоположным значением</button>
+    <div class="fb"></div>
+  </div>
+
+  <div class="quiz card">
+    <p class="q">В строке «идти — шагать — плестись» какое слово привносит новый оттенок?</p>
+    <button class="opt" data-ok="0" data-fb="«Идти» — самое нейтральное, обычное слово.">идти</button>
+    <button class="opt" data-ok="0" data-fb="«Шагать» — бодро, чётко. Оттенок есть, но главное открытие впереди.">шагать</button>
+    <button class="opt" data-ok="1" data-fb="Точно! «Плестись» — идти медленно, с трудом. Замена меняет оттенок, и текст может «заболеть».">плестись</button>
+    <div class="fb"></div>
+  </div>
+
+  <div class="quiz card">
+    <p class="q">Можно ли всегда заменить одно слово другим без потерь?</p>
+    <button class="opt" data-ok="0" data-fb="Не совсем: если не чувствовать оттенка, текст «заболеет» — станет неточным или фальшивым.">Да, слова полностью заменяют друг друга</button>
+    <button class="opt" data-ok="1" data-fb="Верно! Важно учитывать оттенок значения, стиль и сочетаемость с другими словами.">Нет, нужно учитывать оттенок, стиль и сочетаемость</button>
+    <div class="fb"></div>
+  </div>
+
+  <div class="card">
+    <label class="q" for="hypo">Черновик диагноза (пока это только гипотеза): синонимы — это…</label>
+    <textarea id="hypo" rows="2" placeholder="Запиши, как ты пока понимаешь..."></textarea>
+    <p class="note">Свою гипотезу мы проверим на следующем шаге.</p>
+  </div>
+
+  <div class="selfassess" data-step="1">
+    <span>Моя оценка этапа:</span>
+    <button data-val="ok">✅ справился</button>
+    <button data-val="warn">⚠️ сомневался</button>
+    <button data-val="bad">❌ не справился</button>
+  </div>
+</section>
+
+<!-- ================= ШАГ 2 ================= -->
+<section class="step" id="s2">
+  <h2><span class="num">2</span> Диагноз</h2>
+  <p>Врачам иногда выдают подсказки. Заглянем в справочник диагностов.</p>
+
+  <div class="card">
+    <div class="spr-row"><b>син</b> — с, вместе, совместно</div>
+    <div class="spr-row"><b>оним(а)</b> — имя</div>
+  </div>
+
+  <div class="card">
+    <p class="q">Собери термин: син + оним</p>
+    <div class="combine">
+      <span class="part">син</span>
+      <span class="plus">+</span>
+      <span class="part">оним</span>
+      <span class="plus">=</span>
+      <span class="result" id="termResult">СИНОНИМ</span>
+    </div>
+    <button class="btn" id="combine">Собрать термин</button>
+  </div>
+
+  <div class="quiz card">
+    <p class="q">Почему «вместе + имя»?</p>
+    <button class="opt" data-ok="1" data-fb="Верно! Разные слова называют одно и то же — у них как будто одно общее имя смысла.">Потому что разные слова называют одно и то же</button>
+    <button class="opt" data-ok="0" data-fb="Нет, звучат они как раз по-разному: смелый и храбрый — совсем не похожи.">Потому что слова звучат одинаково</button>
+    <button class="opt" data-ok="0" data-fb="Нет, это одно слово. А у нас целая группа разных слов с общим смыслом.">Потому что у слов одно-единственное имя</button>
+    <div class="fb"></div>
+  </div>
+
+  <div class="card">
+    <p class="q">Восстанови определение — поставь диагноз пациенту.</p>
+    <p class="defp">
+      Синонимы — это слова одной
+      <select class="sel" id="d1">
+        <option value="">…</option>
+        <option value="1">части речи</option>
+        <option value="0">разной части речи</option>
+      </select>,
+      которые близки по
+      <select class="sel" id="d2">
+        <option value="">…</option>
+        <option value="0">звучанию</option>
+        <option value="1">значению</option>
+      </select>,
+      но звучат и пишутся
+      <select class="sel" id="d3">
+        <option value="">…</option>
+        <option value="1">по-разному</option>
+        <option value="0">одинаково</option>
+      </select>.
+    </p>
+    <button class="btn" id="checkDef">Поставить диагноз</button>
+    <div class="fb" id="fbDef"></div>
+  </div>
+
+  <div class="card diagnos" id="diagnos" hidden>
+    <div class="stamp">ДИАГНОЗ ПОСТАВЛЕН</div>
+    <p><b>Синонимы</b> — это слова одной части речи, которые близки по значению, но звучат и пишутся по-разному. Они различаются оттенками значения, стилем и сочетаемостью.</p>
+    <p class="ex">Пример: смелый — храбрый — отважный.</p>
+    <p class="note">Запиши определение в тетрадь и сравни с «черновиком» из шага 1.</p>
+  </div>
+
+  <div class="selfassess" data-step="2">
+    <span>Моя оценка этапа:</span>
+    <button data-val="ok">✅ справился</button>
+    <button data-val="warn">⚠️ сомневался</button>
+    <button data-val="bad">❌ не справился</button>
+  </div>
+</section>
+
+<!-- ================= ШАГ 3 ================= -->
+<section class="step" id="s3">
+  <h2><span class="num">3</span> История болезни</h2>
+  <p>Прочитай текст. Найди слова, которые называют одно и то же по-разному. <b>Нажми на них</b>, а потом проверь себя.</p>
+
+  <div class="card">
+    <p class="story">
+      <span class="w" data-verb="1">Зябнет</span> <span class="w" data-verb="0">осинка</span>,
+      <span class="w" data-verb="1">дрожит</span> на <span class="w" data-verb="0">ветру</span>,
+      <span class="w" data-verb="1">стынет</span> на <span class="w" data-verb="0">солнышке</span>,
+      <span class="w" data-verb="1">мерзнет</span> в <span class="w" data-verb="0">жару</span>.
+    </p>
+    <button class="btn" id="checkStory">Проверить</button>
+    <div class="fb" id="fbStory"></div>
+    <div class="row3" id="row3"></div>
+  </div>
+
+  <div class="quiz card">
+    <p class="q">Чем различаются синонимы в этом ряду?</p>
+    <button class="opt" data-ok="1" data-fb="Верно! Зябнет — легко, стынет — сильнее, мерзнет — очень сильно. Оттенки значения — главное различие синонимов.">Оттенками значения: зябнет — легко, стынет — сильнее, мерзнет — очень сильно</button>
+    <button class="opt" data-ok="0" data-fb="Нет, все четыре слова — глаголы, одна часть речи.">Частью речи</button>
+    <button class="opt" data-ok="0" data-fb="Нет, полных дублей почти не бывает: оттенок есть всегда.">Ничем, это полные дубли</button>
+    <div class="fb"></div>
+  </div>
+
+  <div class="selfassess" data-step="3">
+    <span>Моя оценка этапа:</span>
+    <button data-val="ok">✅ справился</button>
+    <button data-val="warn">⚠️ сомневался</button>
+    <button data-val="bad">❌ не справился</button>
+  </div>
+</section>
+
+<!-- ================= ШАГ 4 ================= -->
+<section class="step" id="s4">
+  <h2><span class="num">4</span> Парная диагностика</h2>
+  <p>Работаем в парах. Распредели слова по трём группам: <b>книжное — нейтральное — разговорное</b>. Нажми на слово, а потом на нужную колонку. Чтобы вернуть слово, нажми на него в колонке.</p>
+
+  <div class="pool" id="pool4">
+    <button class="sortchip" data-g="book">множество</button>
+    <button class="sortchip" data-g="neutral">много</button>
+    <button class="sortchip" data-g="coll">уйма</button>
+    <button class="sortchip" data-g="book">шествовать</button>
+    <button class="sortchip" data-g="neutral">идти</button>
+    <button class="sortchip" data-g="coll">топать</button>
+    <button class="sortchip" data-g="book">взирать</button>
+    <button class="sortchip" data-g="neutral">смотреть</button>
+    <button class="sortchip" data-g="coll">глазеть</button>
+    <button class="sortchip" data-g="book">неустрашимый</button>
+    <button class="sortchip" data-g="neutral">смелый</button>
+    <button class="sortchip" data-g="coll">лихой</button>
+  </div>
+
+  <div class="cols">
+    <div class="col" data-col="book">
+      <div class="col-h">КНИЖНОЕ</div>
+      <div class="drop"></div>
+    </div>
+    <div class="col" data-col="neutral">
+      <div class="col-h">НЕЙТРАЛЬНОЕ</div>
+      <div class="drop"></div>
+    </div>
+    <div class="col" data-col="coll">
+      <div class="col-h">РАЗГОВОРНОЕ</div>
+      <div class="drop"></div>
+    </div>
+  </div>
+
+  <button class="btn" id="checkSort">Проверить</button>
+  <button class="btn ghost" id="resetSort">Сбросить</button>
+  <div class="fb" id="fbSort"></div>
+
+  <div class="card">
+    <p class="q">Выбери любую тройку и составь с ней предложения, учитывая стиль. Запиши одно предложение:</p>
+    <textarea rows="2" placeholder="Например: Множество звёзд сияло над лесом."></textarea>
+  </div>
+
+  <div class="selfassess" data-step="4">
+    <span>Моя оценка этапа:</span>
+    <button data-val="ok">✅ справился</button>
+    <button data-val="warn">⚠️ сомневался</button>
+    <button data-val="bad">❌ не справился</button>
+  </div>
+</section>
+
+<!-- ================= ШАГ 5 ================= -->
+<section class="step" id="s5">
+  <h2><span class="num">5</span> Проверка на синонимы</h2>
+  <p>В клинику иногда попадают похожие пациенты. Наша задача — не перепутать. Поставь диагноз каждой паре.</p>
+
+  <div class="grid5" id="grid5">
+    <div class="card card5" data-answer="yes" data-fb="Верно: все три слова называют одно чувство. Различаются оттенками: унылый — самый сильный, затяжной.">
+      <div class="words5">грустный — печальный — унылый</div>
+      <div class="btns"><button data-val="yes">Синонимы</button><button data-val="no">Не синонимы</button></div>
+      <div class="fb"></div>
+    </div>
+    <div class="card card5" data-answer="no" data-fb="Верно: щедрый и жадный — противоположные по смыслу. Это антонимы, а не синонимы.">
+      <div class="words5">щедрый — жадный</div>
+      <div class="btns"><button data-val="yes">Синонимы</button><button data-val="no">Не синонимы</button></div>
+      <div class="fb"></div>
+    </div>
+    <div class="card card5" data-answer="yes" data-fb="Верно: близки по значению, но различаются оттенками. «Симпатичный» — скорее разговорное, «привлекательный» — книжное.">
+      <div class="words5">красивый — привлекательный — симпатичный</div>
+      <div class="btns"><button data-val="yes">Синонимы</button><button data-val="no">Не синонимы</button></div>
+      <div class="fb"></div>
+    </div>
+    <div class="card card5" data-answer="no" data-fb="Верно: идти и бежать — разные способы передвижения, они не заменяют друг друга в тексте.">
+      <div class="words5">идти — бежать</div>
+      <div class="btns"><button data-val="yes">Синонимы</button><button data-val="no">Не синонимы</button></div>
+      <div class="fb"></div>
+    </div>
+    <div class="card card5" data-answer="no" data-fb="Верно: невежа — невоспитанный, невежда — малообразованный. Слова похожи по звучанию, но значения разные.">
+      <div class="words5">невежа — невежда</div>
+      <div class="btns"><button data-val="yes">Синонимы</button><button data-val="no">Не синонимы</button></div>
+      <div class="fb"></div>
+    </div>
+    <div class="card card5" data-answer="yes" data-fb="Верно: близки по значению, но нужно учитывать сочетаемость: «долговязый» говорят только о человеке, и это разговорное слово.">
+      <div class="words5">высокий — долговязый — длинный</div>
+      <div class="btns"><button data-val="yes">Синонимы</button><button data-val="no">Не синонимы</button></div>
+      <div class="fb"></div>
+    </div>
+  </div>
+
+  <div class="score" id="score5">Верно: 0 из 6</div>
+
+  <div class="selfassess" data-step="5">
+    <span>Моя оценка этапа:</span>
+    <button data-val="ok">✅ справился</button>
+    <button data-val="warn">⚠️ сомневался</button>
+    <button data-val="bad">❌ не справился</button>
+  </div>
+</section>
+
+<!-- ================= ШАГ 6 ================= -->
+<section class="step" id="s6">
+  <h2><span class="num">6</span> Лечение</h2>
+  <p>Перед нами «больной» текст. Нужно поставить каждое слово на своё место. Выбирай синоним — и следи за <b>состоянием текста</b>.</p>
+
+  <div class="card">
+    <p class="heal">
+      Ранним утром мы <span class="blank" id="b1">(1)</span> по лесной тропинке.
+      Солнце <span class="blank" id="b2">(2)</span>.
+      Вдруг из кустов <span class="blank" id="b3">(3)</span> заяц.
+      Он <span class="blank" id="b4">(4)</span> и <span class="blank" id="b5">(5)</span> в чащу.
+    </p>
+
+    <div class="row6" data-gap="1">
+      <div class="row6-label">(1)</div>
+      <div class="row6-chips">
+        <button class="chip" data-word="шли" data-pts="2" data-fb="«Шли» — нейтрально и точно: утро спокойное, без надрыва.">шли</button>
+        <button class="chip" data-word="шагали" data-pts="1" data-fb="«Шагали» — бодро и чётко. Возможно, но звучит чуть «по-солдатски».">шагали</button>
+        <button class="chip" data-word="плелись" data-pts="0" data-fb="«Плелись» — медленно, с трудом. Для бодрого утра не подходит: текст «заболел».">плелись</button>
+      </div>
+      <div class="fb"></div>
+    </div>
+
+    <div class="row6" data-gap="2">
+      <div class="row6-label">(2)</div>
+      <div class="row6-chips">
+        <button class="chip" data-word="светило" data-pts="2" data-fb="«Светило» — нейтрально и точно для раннего утра.">светило</button>
+        <button class="chip" data-word="сияло" data-pts="1" data-fb="«Сияло» — ярко, торжественно. Возможно, но добавляет пафоса.">сияло</button>
+        <button class="chip" data-word="пекло" data-pts="0" data-fb="«Пекло» — слишком сильно и жарко для раннего утра: текст «заболел».">пекло</button>
+      </div>
+      <div class="fb"></div>
+    </div>
+
+    <div class="row6" data-gap="3">
+      <div class="row6-label">(3)</div>
+      <div class="row6-chips">
+        <button class="chip" data-word="выскочил" data-pts="2" data-fb="«Выскочил» — внезапно. Точно передаёт «вдруг».">выскочил</button>
+        <button class="chip" data-word="выбежал" data-pts="1" data-fb="«Выбежал» — нейтрально, но чуть теряет внезапность.">выбежал</button>
+        <button class="chip" data-word="выпрыгнул" data-pts="1" data-fb="«Выпрыгнул» — возможно, если заяц двигался прыжками.">выпрыгнул</button>
+      </div>
+      <div class="fb"></div>
+    </div>
+
+    <div class="row6" data-gap="4">
+      <div class="row6-label">(4)</div>
+      <div class="row6-chips">
+        <button class="chip" data-word="испугался" data-pts="2" data-fb="«Испугался» — нейтрально и точно.">испугался</button>
+        <button class="chip" data-word="оторопел" data-pts="1" data-fb="«Оторопел» — растерялся, опешил. Книжное, звучит выразительно.">оторопел</button>
+        <button class="chip" data-word="струсил" data-pts="1" data-fb="«Струсил» — разговорное, с оттенком оценки. Для зайца забавно, но стиль меняется.">струсил</button>
+      </div>
+      <div class="fb"></div>
+    </div>
+
+    <div class="row6" data-gap="5">
+      <div class="row6-label">(5)</div>
+      <div class="row6-chips">
+        <button class="chip" data-word="побежал" data-pts="2" data-fb="«Побежал» — нейтрально и верно.">побежал</button>
+        <button class="chip" data-word="помчался" data-pts="2" data-fb="«Помчался» — быстро и выразительно. Отлично подходит.">помчался</button>
+        <button class="chip" data-word="понёсся" data-pts="1" data-fb="«Понёсся» — очень быстро, экспрессивно. Можно, но чуть «перебор».">понёсся</button>
+      </div>
+      <div class="fb"></div>
+    </div>
+
+    <div class="health">
+      <div class="health-label">Состояние текста: <b id="hp">—</b></div>
+      <div class="health-bar"><div id="healthFill"></div></div>
+    </div>
+  </div>
+
+  <div class="selfassess" data-step="6">
+    <span>Моя оценка этапа:</span>
+    <button data-val="ok">✅ справился</button>
+    <button data-val="warn">⚠️ сомневался</button>
+    <button data-val="bad">❌ не справился</button>
+  </div>
+</section>
+
+<!-- ================= ШАГ 7 ================= -->
+<section class="step" id="s7">
+  <h2><span class="num">7</span> Консилиум</h2>
+  <p>Представьте: вместо многих синонимов осталось одно слово. Вот что получилось. Нажми на каждое <b>«хороший»</b> и подбери точную замену.</p>
+
+  <div class="card">
+    <p class="sick">
+      В воскресенье у нас выдался <button class="bad7" data-i="0">хороший</button> день.
+      С утра стояла <button class="bad7" data-i="1">хорошая</button> погода, и мы с сестрой пошли в парк.
+      По дороге мы встретили <button class="bad7" data-i="2">хорошего</button> друга.
+      Он рассказал нам о <button class="bad7" data-i="3">хорошей</button> книге.
+      В парке мы помогли малышу слезть с высокой горки — это был <button class="bad7" data-i="4">хороший</button> поступок.
+      Домой мы вернулись в <button class="bad7" data-i="5">хорошем</button> настроении.
+    </p>
+    <div class="panel7" id="panel7"></div>
+    <div class="fb" id="fb7"></div>
+  </div>
+
+  <div id="done7" hidden>
+    <div class="card">
+      <p class="q">Повтор устранён! Ответь: зачем вообще нужны синонимы?</p>
+      <label class="check"><input type="checkbox" data-ok="1"> помогают избежать повторов</label>
+      <label class="check"><input type="checkbox" data-ok="1"> точнее передают мысль и чувство</label>
+      <label class="check"><input type="checkbox" data-ok="1"> делают речь выразительной и красивой</label>
+      <label class="check"><input type="checkbox" data-ok="1"> помогают объяснить значение слова</label>
+      <label class="check"><input type="checkbox" data-ok="0"> делают текст длиннее</label>
+      <button class="btn" id="checkPurp">Проверить</button>
+      <div class="fb" id="fbPurp"></div>
+    </div>
+  </div>
+
+  <div class="selfassess" data-step="7">
+    <span>Моя оценка этапа:</span>
+    <button data-val="ok">✅ справился</button>
+    <button data-val="warn">⚠️ сомневался</button>
+    <button data-val="bad">❌ не справился</button>
+  </div>
+</section>
+
+<!-- ================= ШАГ 8 ================= -->
+<section class="step" id="s8">
+  <h2><span class="num">8</span> Итог и рефлексия</h2>
+
+  <div class="card diagnos">
+    <div class="stamp">РАССЛЕДОВАНИЕ ЗАВЕРШЕНО</div>
+    <p>Диагноз поставлен: <b>синонимы — не дублёры, а инструменты точной и выразительной речи</b>. Мы научились различать их оттенки и выбирать нужное слово.</p>
+  </div>
+
+  <div class="card">
+    <p class="q">Закончи фразу: сегодня на уроке я понял(а), что синонимы — это…</p>
+    <textarea rows="2" placeholder="Синонимы — это..."></textarea>
+    <button class="btn ghost" id="showSample">Показать образец</button>
+    <div class="fb good" id="sample" hidden>
+      Синонимы — это слова одной части речи, близкие по значению, но разные по звучанию и написанию; они различаются оттенками значения, стилем и сочетаемостью.
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="q">Самым трудным для меня было…</p>
+    <textarea rows="2"></textarea>
+    <p class="q" style="margin-top:14px">Самым интересным для меня было…</p>
+    <textarea rows="2"></textarea>
+  </div>
+
+  <div class="card">
+    <p class="q">Оценочный лист врача-диагноста</p>
+    <div id="selfTable"></div>
+    <p class="note">✅ — справился сам · ⚠️ — сомневался, нужна была помощь · ❌ — не справился</p>
+  </div>
+
+  <div class="selfassess" data-step="8">
+    <span>Моя оценка урока:</span>
+    <button data-val="ok">✅ всё понятно</button>
+    <button data-val="warn">⚠️ остались вопросы</button>
+    <button data-val="bad">❌ нужно повторить</button>
+  </div>
+</section>
+
+</main>
+
+<div class="footnav">
+  <button id="prev">← Назад</button>
+  <span id="counter">Шаг 1 из 8</span>
+  <button id="next">Далее →</button>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+
+  /* ================= навигация ================= */
+  var self = {};
+  var current = 1;
+
+  function go(n){
+    current = n;
+    document.querySelectorAll('.step').forEach(function(s){
+      s.classList.toggle('active', s.id === 's' + n);
+    });
+    document.querySelectorAll('.stepnav button').forEach(function(b){
+      b.classList.toggle('active', +b.dataset.n === n);
+    });
+    document.getElementById('counter').textContent = 'Шаг ' + n + ' из 8';
+    document.getElementById('prev').disabled = (n === 1);
+    document.getElementById('next').disabled = (n === 8);
+    window.scrollTo({top:0, behavior:'smooth'});
+    if(n === 8) renderSelf();
+  }
+
+  document.querySelectorAll('.stepnav button').forEach(function(b){
+    b.addEventListener('click', function(){ go(+b.dataset.n); });
+  });
+  document.getElementById('prev').addEventListener('click', function(){ if(current > 1) go(current - 1); });
+  document.getElementById('next').addEventListener('click', function(){ if(current < 8) go(current + 1); });
+
+  /* ================= самооценка ================= */
+  var stepNames = {
+    1:'Анализы', 2:'Диагноз', 3:'История болезни', 4:'Парная диагностика',
+    5:'Проверка на синонимы', 6:'Лечение', 7:'Консилиум', 8:'Рефлексия'
+  };
+  var icons = {ok:'✅', warn:'⚠️', bad:'❌'};
+
+  document.querySelectorAll('.selfassess').forEach(function(sa){
+    sa.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click', function(){
+        sa.querySelectorAll('button').forEach(function(x){ x.classList.remove('active'); });
+        b.classList.add('active');
+        self[sa.dataset.step] = b.dataset.val;
+        if(current === 8) renderSelf();
+      });
+    });
+  });
+
+  function renderSelf(){
+    var html = '<table class="selftable"><tr><th>Этап</th><th>Моя оценка</th></tr>';
+    for(var i = 1; i <= 8; i++){
+      html += '<tr><td>' + i + '. ' + stepNames[i] + '</td><td>' + (self[i] ? icons[self[i]] : '—') + '</td></tr>';
+    }
+    html += '</table>';
+    document.getElementById('selfTable').innerHTML = html;
+  }
+
+  /* ================= универсальный тест ================= */
+  document.querySelectorAll('.quiz').forEach(function(q){
+    q.querySelectorAll('.opt').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        if(q.dataset.done) return;
+        q.querySelectorAll('.opt').forEach(function(b){ b.classList.remove('wrong'); });
+        var ok = btn.dataset.ok === '1';
+        if(ok){
+          btn.classList.add('correct');
+          q.dataset.done = '1';
+          q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+        } else {
+          btn.classList.add('wrong');
+        }
+        var fb = q.querySelector('.fb');
+        if(fb){
+          fb.innerHTML = btn.dataset.fb || '';
+          fb.className = 'fb show ' + (ok ? 'good' : 'bad');
+        }
+      });
+    });
+  });
+
+  /* ================= шаг 2 ================= */
+  document.getElementById('combine').addEventListener('click', function(){
+    document.getElementById('termResult').classList.add('show');
+  });
+
+  document.getElementById('checkDef').addEventListener('click', function(){
+    var sels = [document.getElementById('d1'), document.getElementById('d2'), document.getElementById('d3')];
+    var fb = document.getElementById('fbDef');
+    if(sels.some(function(s){ return s.value === ''; })){
+      fb.className = 'fb show bad';
+      fb.textContent = 'Заполни все пропуски — врачам нужен полный диагноз.';
+      return;
+    }
+    var ok = sels.every(function(s){ return s.value === '1'; });
+    sels.forEach(function(s){
+      s.classList.remove('good','bad');
+      s.classList.add(s.value === '1' ? 'good' : 'bad');
+    });
+    if(ok){
+      fb.className = 'fb show good';
+      fb.textContent = 'Верно! Диагноз поставлен. Сравни с картой пациента.';
+      document.getElementById('diagnos').hidden = false;
+      sels.forEach(function(s){ s.disabled = true; });
+    } else {
+      fb.className = 'fb show bad';
+      fb.textContent = 'Пока неточно: посмотри на красные пропуски и подумай, что именно различает синонимы.';
+    }
+  });
+
+  /* ================= шаг 3 ================= */
+  var words3 = document.querySelectorAll('#s3 .w');
+  words3.forEach(function(w){
+    w.addEventListener('click', function(){
+      if(w.classList.contains('ok')) return;
+      w.classList.toggle('selected');
+      w.classList.remove('bad','miss');
+    });
+  });
+
+  document.getElementById('checkStory').addEventListener('click', function(){
+    var found = 0, missed = 0, wrong = 0;
+    var row = [];
+    words3.forEach(function(w){
+      var isVerb = w.dataset.verb === '1';
+      var sel = w.classList.contains('selected');
+      w.classList.remove('ok','bad','miss');
+      if(isVerb && sel){ w.classList.add('ok'); found++; row.push(w.textContent); }
+      else if(isVerb && !sel){ w.classList.add('miss'); missed++; }
+      else if(!isVerb && sel){ w.classList.add('bad'); wrong++; }
+    });
+    var fb = document.getElementById('fbStory');
+    if(found === 4 && wrong === 0){
+      fb.className = 'fb show good';
+      fb.textContent = 'Верно! Зябнет — дрожит — стынет — мерзнет: все слова называют одно действие, но с разной силой.';
+      document.getElementById('row3').textContent = 'Синонимический ряд: ' + row.join(' — ') + '.';
+    } else {
+      fb.className = 'fb show bad';
+      fb.textContent = 'Найдено ' + found + ' из 4. Слова-названия действия спрятаны среди существительных. Жёлтым отмечены пропущенные, красным — лишние.';
+    }
+  });
+
+  /* ================= шаг 4 ================= */
+  var pool4 = document.getElementById('pool4');
+  var picked = null;
+
+  document.querySelectorAll('#s4 .sortchip').forEach(function(ch){
+    ch.addEventListener('click', function(){
+      if(ch.parentElement !== pool4){
+        pool4.appendChild(ch);
+        ch.classList.remove('ok','bad','picked');
+        return;
+      }
+      if(picked === ch){
+        ch.classList.remove('picked');
+        picked = null;
+      } else {
+        if(picked) picked.classList.remove('picked');
+        picked = ch;
+        ch.classList.add('picked');
+      }
+    });
+  });
+
+  document.querySelectorAll('#s4 .col').forEach(function(col){
+    col.addEventListener('click', function(e){
+      if(e.target.closest('.sortchip')) return;
+      if(!picked) return;
+      col.querySelector('.drop').appendChild(picked);
+      picked.classList.remove('picked','ok','bad');
+      picked = null;
+    });
+  });
+
+  document.getElementById('checkSort').addEventListener('click', function(){
+    var fb = document.getElementById('fbSort');
+    var ok = 0, bad = 0, left = 0;
+    document.querySelectorAll('#s4 .sortchip').forEach(function(ch){
+      ch.classList.remove('ok','bad');
+      var col = ch.closest('.col');
+      if(!col){ left++; return; }
+      if(ch.dataset.g === col.dataset.col){ ch.classList.add('ok'); ok++; }
+      else { ch.classList.add('bad'); bad++; }
+    });
+    if(left > 0){
+      fb.className = 'fb show bad';
+      fb.textContent = 'В общем списке осталось слов: ' + left + '. Распредели их по колонкам.';
+      return;
+    }
+    if(bad === 0){
+      fb.className = 'fb show good';
+      fb.textContent = 'Отлично! Все 12 слов на своих местах. Книжные — торжественные, нейтральные — обычные, разговорные — живые, часто с оттенком оценки.';
+    } else {
+      fb.className = 'fb show bad';
+      fb.textContent = 'Верно ' + ok + ' из 12. Красным отмечены слова, которым нужна другая колонка: нажми на них, чтобы вернуть в список, и попробуй снова.';
+    }
+  });
+
+  document.getElementById('resetSort').addEventListener('click', function(){
+    document.querySelectorAll('#s4 .sortchip').forEach(function(ch){
+      ch.classList.remove('ok','bad','picked');
+      pool4.appendChild(ch);
+    });
+    picked = null;
+    var fb = document.getElementById('fbSort');
+    fb.className = 'fb';
+    fb.textContent = '';
+  });
+
+  /* ================= шаг 5 ================= */
+  var score5 = 0;
+  document.querySelectorAll('#s5 .card5').forEach(function(card){
+    card.querySelectorAll('.btns button').forEach(function(b){
+      b.addEventListener('click', function(){
+        if(card.dataset.done) return;
+        card.dataset.done = '1';
+        var ok = (b.dataset.val === card.dataset.answer);
+        card.querySelectorAll('.btns button').forEach(function(x){ x.disabled = true; });
+        b.classList.add(ok ? 'correct' : 'wrong');
+        if(!ok){
+          var right = card.querySelector('.btns button[data-val="' + card.dataset.answer + '"]');
+          if(right) right.classList.add('correct');
+        }
+        var fb = card.querySelector('.fb');
+        fb.className = 'fb show ' + (ok ? 'good' : 'bad');
+        fb.textContent = card.dataset.fb;
+        if(ok) score5++;
+        document.getElementById('score5').textContent = 'Верно: ' + score5 + ' из 6';
+      });
+    });
+  });
+
+  /* ================= шаг 6 ================= */
+  function updateHealth(){
+    var sum = 0, count = 0;
+    document.querySelectorAll('#s6 .row6').forEach(function(r){
+      if(r.dataset.pts !== undefined){ sum += +r.dataset.pts; count++; }
+    });
+    var hp = document.getElementById('hp');
+    var fill = document.getElementById('healthFill');
+    if(count === 0){ hp.textContent = '—'; fill.style.width = '0%'; return; }
+    var pct = Math.round(sum / 10 * 100);
+    hp.textContent = pct + '%' + (count < 5 ? ' (заполнено ' + count + ' из 5)' : '');
+    fill.style.width = pct + '%';
+    fill.style.background = pct >= 80 ? '#2f9e6b' : (pct >= 50 ? '#e2a54e' : '#cf4b4b');
+  }
+
+  document.querySelectorAll('#s6 .row6').forEach(function(row){
+    row.querySelectorAll('.chip').forEach(function(ch){
+      ch.addEventListener('click', function(){
+        row.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('picked6'); });
+        ch.classList.add('picked6');
+        row.dataset.pts = ch.dataset.pts;
+        var fb = row.querySelector('.fb');
+        fb.className = 'fb show ' + (ch.dataset.pts === '2' ? 'good' : 'bad');
+        fb.textContent = ch.dataset.fb;
+        var blank = document.getElementById('b' + row.dataset.gap);
+        blank.textContent = ch.dataset.word;
+        blank.classList.add('filled');
+        updateHealth();
+      });
+    });
+  });
+
+  /* ================= шаг 7 ================= */
+  var syn7 = [
+    { hint:'день', opts:[
+      ['славный',1],['чудесный',1],['замечательный',1],
+      ['высокий',0,'«Высокий день» — так не говорят: слово не сочетается со словом «день».'],
+      ['быстрый',0,'«Быстрый день» — не по-русски: «быстрый» — о движении, а не о дне.']
+    ]},
+    { hint:'погода', opts:[
+      ['ясная',1],['чудесная',1],['отличная',1],['прекрасная',1],
+      ['длинная',0,'«Длинная погода» — не говорят: «длинный» — о протяжённости, а не о погоде.']
+    ]},
+    { hint:'друга', opts:[
+      ['верного',1],['близкого',1],['настоящего',1],['замечательного',1],
+      ['широкого',0,'«Широкий друг» — не говорят: слово не сочетается с существительным «друг».']
+    ]},
+    { hint:'книге', opts:[
+      ['интересной',1],['увлекательной',1],['замечательной',1],['прекрасной',1],
+      ['толстой',0,'«Толстая книга» — про объём, а не про качество. Здесь нужен синоним к «хорошая».']
+    ]},
+    { hint:'поступок', opts:[
+      ['благородный',1],['достойный',1],['славный',1],['добрый',1],
+      ['солнечный',0,'«Солнечный поступок» — не говорят: слово не сочетается с существительным «поступок».']
+    ]},
+    { hint:'настроении', opts:[
+      ['прекрасном',1],['отличном',1],['приподнятом',1],['чудесном',1],
+      ['высоком',0,'«Высокое настроение» — не говорят: слово не сочетается с существительным «настроение».']
+    ]}
+  ];
+
+  var panel7 = document.getElementById('panel7');
+  var activeIdx = -1;
+  var done7 = 0;
+
+  document.querySelectorAll('#s7 .bad7').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if(btn.classList.contains('done')) return;
+      activeIdx = +btn.dataset.i;
+      var data = syn7[activeIdx];
+      var html = '<div class="panel-title">Подбери синоним к слову «' + btn.textContent + '» (' + data.hint + '):</div><div class="chips">';
+      data.opts.forEach(function(o, k){
+        html += '<button class="chip" data-idx="' + k + '">' + o[0] + '</button>';
+      });
+      html += '</div><div class="fb" id="fbChip"></div>';
+      panel7.innerHTML = html;
+      panel7.classList.add('open');
+      panel7.querySelectorAll('.chip').forEach(function(c){
+        c.addEventListener('click', function(){
+          var opt = data.opts[+c.dataset.idx];
+          var fb = document.getElementById('fbChip');
+          if(opt[1] === 1){
+            btn.textContent = opt[0];
+            btn.classList.add('done');
+            panel7.classList.remove('open');
+            panel7.innerHTML = '';
+            done7++;
+            var fb7 = document.getElementById('fb7');
+            fb7.className = 'fb show good';
+            fb7.textContent = 'Хорошая замена! Найдено точных синонимов: ' + done7 + ' из 6.';
+            if(done7 === 6){
+              document.getElementById('done7').hidden = false;
+              fb7.textContent = 'Все шесть повторов устранены! Текст «выздоровел». Теперь ответь на вопрос ниже.';
+            }
+          } else {
+            fb.className = 'fb show bad';
+            fb.textContent = opt[2];
+          }
+        });
+      });
+      btn.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+  });
+
+  document.getElementById('checkPurp').addEventListener('click', function(){
+    var fb = document.getElementById('fbPurp');
+    var checks = document.querySelectorAll('#done7 .check');
+    var okAll = true, anyChecked = false;
+    checks.forEach(function(lbl){
+      var inp = lbl.querySelector('input');
+      lbl.classList.remove('ok','bad');
+      if(inp.checked){
+        anyChecked = true;
+        if(inp.dataset.ok === '1'){ lbl.classList.add('ok'); }
+        else { lbl.classList.add('bad'); okAll = false; }
+      } else if(inp.dataset.ok === '1'){
+        okAll = false;
+      }
+    });
+    if(!anyChecked){
+      fb.className = 'fb show bad';
+      fb.textContent = 'Отметь хотя бы один вариант.';
+      return;
+    }
+    if(okAll){
+      fb.className = 'fb show good';
+      fb.textContent = 'Верно! Синонимы нужны, чтобы речь была точной, разнообразной и выразительной.';
+    } else {
+      fb.className = 'fb show bad';
+      fb.textContent = 'Почти! Зелёным отмечены верные причины, красным — лишняя. Подумай, зачем синонимы на самом деле.';
+    }
+  });
+
+  /* ================= шаг 8 ================= */
+  document.getElementById('showSample').addEventListener('click', function(){
+    var s = document.getElementById('sample');
+    s.hidden = !s.hidden;
+  });
+
+  renderSelf();
+});
+</script>
+</body>
+</html>
